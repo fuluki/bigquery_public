@@ -27,6 +27,6 @@ WITH  hits
 
                conversions_total FROM sessions)
 
-SELECT IFNULL(last_non_direct_source, 'none') AS last_non_direct_source, SUM(conversions_total) AS conversions_total FROM attributed_sessions
+SELECT IFNULL(last_non_direct_source, 'none') AS first_click_source, SUM(conversions_total) AS conversions_total FROM attributed_sessions
 GROUP BY 1
 ORDER BY 2 DESC
