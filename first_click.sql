@@ -21,12 +21,12 @@ WITH  hits
             AS (SELECT user_pseudo_id, session_id, session_date, session_start,
                collected_source, 
 
-               IFNULL(collected_source, FIRST_VALUE(collected_source IGNORE NULLS) OVER (PARTITION BY 
+               FIRST_VALUE(collected_source IGNORE NULLS) OVER (PARTITION BY 
                user_pseudo_id ORDER BY session_start 
-               RANGE BETWEEN 604800000000 PRECEDING AND 1 PRECEDING)) AS last_non_direct_source, #7days_attribution_window
+               RANGE BETWEEN 604800000000 PRECEDING AND CURRENT ROW) AS first_click_sourse, #7days_attribution_window
 
                conversions_total FROM sessions)
 
-SELECT IFNULL(last_non_direct_source, 'none') AS first_click_source, SUM(conversions_total) AS conversions_total FROM attributed_sessions
+SELECT IFNULL(first_click_sourse, 'none') AS first_click_source, SUM(conversions_total) AS conversions_total FROM attributed_sessions
 GROUP BY 1
 ORDER BY 2 DESC
