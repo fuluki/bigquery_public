@@ -2,7 +2,7 @@ WITH  hits
             AS (SELECT user_pseudo_id, CONCAT(user_pseudo_id, 
               (SELECT value.int_value FROM UNNEST(event_params) WHERE key = 'ga_session_id')) AS session_id, 
               event_date, event_timestamp, event_name, 
-              IF(collected_traffic_source.manual_source IN ('cpc', 'cpm'), collected_traffic_source.manual_source, NULL) AS 
+              IF(collected_traffic_source.manual_medium IN ('cpc', 'cpm'), collected_traffic_source.manual_source, NULL) AS 
               collected_source,
               IF(event_name = 'form_send', 1, 0) AS is_conversion  
               FROM `<dataset>`
