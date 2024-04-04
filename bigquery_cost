@@ -1,3 +1,5 @@
+#calculate bigquery pricing
+
 SELECT 
       project_id,
       user_email,
