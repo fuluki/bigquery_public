@@ -1,3 +1,5 @@
+#draw the session table
+
 WITH hits AS (SELECT user_pseudo_id, 
        CONCAT(user_pseudo_id, (SELECT value.int_value FROM UNNEST(event_params) WHERE key = 'ga_session_id')) AS session_id, #unique session id
        event_date,
@@ -6,7 +8,7 @@ WITH hits AS (SELECT user_pseudo_id,
        geo.country AS country,
        IFNULL(collected_traffic_source.manual_source, 'none') AS session_source, #traffic source
        IF(event_name = 'form_send', 1, 0) AS is_conversion
-       FROM `gtm-k4v7jns-mjziz.analytics_334843133.events_2024*` 
+       FROM `****` 
        WHERE event_name NOT IN ('session_start', 'first_visit')), #exclude service events
 
        window_hits AS (SELECT * EXCEPT(is_conversion, event_timestamp),
