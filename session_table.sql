@@ -1,3 +1,5 @@
+#draw the session table
+
 WITH hits AS (
 
        SELECT user_pseudo_id, 
