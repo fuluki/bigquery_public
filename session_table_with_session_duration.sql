@@ -1,4 +1,4 @@
-#draw the session table
+#draw the session table with session duration
 
 WITH hits AS (SELECT user_pseudo_id, 
        CONCAT(user_pseudo_id, (SELECT value.int_value FROM UNNEST(event_params) WHERE key = 'ga_session_id')) AS session_id, #unique session id
