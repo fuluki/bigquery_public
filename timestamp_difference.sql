@@ -1,3 +1,5 @@
+#calculate the diiference between event_timestamp and real timestamp
+
 WITH a AS (
         SELECT TIMESTAMP_DIFF(TIMESTAMP_MICROS(event_timestamp),(SELECT TIMESTAMP_MILLIS(value.int_value) FROM UNNEST(event_params) WHERE key =         
         'hit_timestamp'), MINUTE) AS minute_difference, COUNT(*) AS count
