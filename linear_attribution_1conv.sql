@@ -54,7 +54,7 @@ WITH  hits
             user_pseudo_id) END AS value
 
             FROM collected_sessions  
-            WHERE window_diff BETWEEN 0 AND 604800000000)
+            WHERE window_diff BETWEEN 0 AND 604800000000) #attribution_window
 
 SELECT IFNULL(collected_source, 'none'), SUM(value) as value FROM sequences GROUP BY 1 HAVING value > 0 ORDER BY 
 value DESC
