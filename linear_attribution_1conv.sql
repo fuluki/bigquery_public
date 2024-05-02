@@ -8,12 +8,12 @@ WITH  hits
                AS 
                collected_source,
                IF(event_name = 'form_send', 1, 0) AS is_conversion  
-               FROM `******.analytics_*********.events_2023*`
+               FROM `******.analytics_*********.events_2023*` #project_id
                WHERE event_name NOT IN ('session_start', 'user_engagement', 'first_visit')
 
               AND user_pseudo_id IN (SELECT DISTINCT user_pseudo_id 
               FROM `gtm-k4v7jns-mjziz.analytics_334843133.events_2023*` WHERE event_name = 
-              'form_send')),
+              'form_send')), #your_conversion_event
 
       window_hits 
             AS (SELECT *, ROW_NUMBER() OVER (PARTITION BY session_id ORDER BY event_timestamp) 
